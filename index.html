@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- this was a tutorial found on https://ayoisaiah.com/vuejs-todolist-app/ on Vue JS  -->
+  <meta charset="UTF-8">
+  <title>Vue ToDo List</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.js"></script>
+  <script src="app.js"></script>
+</head>
+<body>
+  <div class="container" id="todo">
+    <!-- Panel for holding our input -->
+    <section class="panel">
+      <input type="checkbox" id="mark-all" v-bind:checked="areAllSelected" v-on:click="selectAll">
+      <input type="text" placeholder="What do you need to do?" autofocus class="text-input" v-model="newTask" v-on:keyup.enter="addTask">
+      <button v-on:click="clearList">Clear List</button>
+    </section>
+
+    <!-- Unorderd list for holding our todo items -->
+    <ul class="list">
+      <li v-for="task in taskList" v-bind:class="{done: task.checked}">
+        <input type="checkbox" class="checkbox" v-model="task.checked">
+        <label for="checkbox">{{ task.text }}</label>
+        <button class="delete" v-on:click="removeTask(task)">X</button>
+      </li>
+    </ul>
+  </div>
+
+  <!-- <div id="demo">
+    <input type="text" v-model="name">
+    <button v-on:click="alertName">Say My Name</button>
+    <h3>Here's some test data</h3>
+    {/* <h6> {{ testValue }} </h6> */}
+    <br />
+    <pre>{{ $data }}</pre>
+  </div> -->
+</body>
+</html>
